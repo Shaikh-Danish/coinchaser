@@ -1,0 +1,32 @@
+.nav {
+  background-color: #03001C;
+  width: 250px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5em;
+}
+.nav__logo {
+  font-weight: bold;
+}
+.nav__links {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 3em 0;
+}
+.nav__links a {
+  display: flex;
+  align-items: center;
+  padding: 1em;
+  gap: 0 0.5em;
+  width: 100%;
+}
+.nav__links a:hover {
+  background-color: rgba(27, 36, 48, 0.6039215686);
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}/*# sourceMappingURL=NavBar.css.map */
