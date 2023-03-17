@@ -1,29 +1,55 @@
-.nav 
-    background-color: #03001C
-    height: 100vh
+@use '../partials/color' as c
+    
+.nav
+    background-color: c.$clr-primary
     display: flex
-    flex-direction: column
-    padding: 1.5em
-    position: fixed
+    justify-content: space-between
+    padding : 1em 1.5em
+    position: relative  
 
     &__logo 
         font-weight: bold   
+        font-size: 1.2rem
 
     &__links
         display: flex
-        flex-direction: column
         list-style: none
-        margin: 3em 0
-    &__links a 
-        display: flex   
-        align-items: center
-        padding: 1em
-        gap: 0 .5em 
-        width: 100%
+        gap: 0 1em
+        visibility: hidden
+        cursor: none
+        opacity: 0
+        transition: opacity .2s ease-in
 
-        &:hover 
-            background-color: #1B24309A
+    &__links[aria-expanded=true]
+        visibility: visible
+        opacity: 1
+        cursor: auto
+
+    &__ham-menu
+        background: transparent
+        border: none
+        outline: none
+        cursor: pointer
+        color: c.$clr-white
+
+        // & a:hover
+        //     color: c.$clr-black
 
 a 
     text-decoration: none
-    color: white
+    color: c.$clr-white
+
+
+@media screen and (max-width: 768px) 
+    .nav__links
+        background-color: c.$clr-primary
+        position: absolute
+        flex-direction: column
+        top: 100%
+        right: 0
+
+        li 
+            padding: 1em 1.5em
+
+        li:hover
+            background-color: c.$clr-bg

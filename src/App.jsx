@@ -16,7 +16,6 @@ function App() {
         <NavBar />
       </header>
       <main>
-        {/* <Home /> */}
         <div>
           <Routes>
             <Route exact path="/" element={<Home />} />
