@@ -1,32 +1,53 @@
 .nav {
-  background-color: #03001C;
-  width: 250px;
-  height: 100vh;
+  background-color: rgb(80, 70, 229);
   display: flex;
-  flex-direction: column;
-  padding: 1.5em;
+  justify-content: space-between;
+  padding: 1em 1.5em;
+  position: relative;
 }
 .nav__logo {
   font-weight: bold;
+  font-size: 1.2rem;
 }
 .nav__links {
   display: flex;
-  flex-direction: column;
   list-style: none;
-  margin: 3em 0;
+  gap: 0 1em;
+  visibility: hidden;
+  cursor: none;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
 }
-.nav__links a {
-  display: flex;
-  align-items: center;
-  padding: 1em;
-  gap: 0 0.5em;
-  width: 100%;
+.nav__links[aria-expanded=true] {
+  visibility: visible;
+  opacity: 1;
+  cursor: auto;
 }
-.nav__links a:hover {
-  background-color: rgba(27, 36, 48, 0.6039215686);
+.nav__ham-menu {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
 }
 
 a {
   text-decoration: none;
-  color: white;
+  color: rgb(255, 255, 255);
+}
+
+@media screen and (max-width: 768px) {
+  .nav__links {
+    background-color: rgb(80, 70, 229);
+    position: absolute;
+    flex-direction: column;
+    top: 100%;
+    right: 0;
+  }
+  .nav__links li {
+    padding: 1em 1.5em;
+  }
+  .nav__links li:hover {
+    background-color: rgba(80, 70, 229, 0.15);
+  }
 }/*# sourceMappingURL=NavBar.css.map */

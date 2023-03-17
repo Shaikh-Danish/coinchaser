@@ -1,4 +1,4 @@
-import React from 'react'
+import {  useEffect } from 'react'
 import { millify } from 'millify'
 import { Link } from 'react-router-dom'
 
@@ -7,33 +7,34 @@ import './Home.sass'
 
 function Home() {
 
-  const { data, isFetching } = useGetCryptosQuery()
-  console.log(data, isFetching)
-  const globalStats = data?.data?.stats
-  console.log(globalStats)
+  let { data: globalStats, isSuccess } = useGetCryptosQuery()
+  
+  if (isSuccess) globalStats = globalStats?.data?.stats
+
+  
   return (
     <>
       <h1>Global CryptoCurrencies</h1>
       <div className="home-container">
         <div className="home-row">
           <h2>Total CryptoCurrencies</h2>
-          <p>{globalStats.total}</p>
+          <p>{globalStats?.total}</p>
         </div>
         <div className="home-row">
           <h2>Total Exchanges</h2>
-          <p>{millify(globalStats.totalExchanges)}</p>
+          <p>{millify(globalStats?.totalExchanges)}</p>
         </div>
         <div className="home-row">
           <h2>Total Market Cap</h2>
-          <p>{millify(globalStats.totalMarketCap)}</p>
+          <p>{millify(globalStats?.totalMarketCap)}</p>
         </div>
         <div className="home-row">
           <h2>Total 24h Volume</h2>
-          <p>{millify(globalStats.total24hVolume)}</p>
+          <p>{millify(globalStats?.total24hVolume)}</p>
         </div>
         <div className="home-row">
           <h2>Total Markets</h2>
-          <p>{millify(globalStats.totalMarkets)}</p>
+          <p>{millify(globalStats?.totalMarkets)}</p>
         </div>
       </div>
     </>
