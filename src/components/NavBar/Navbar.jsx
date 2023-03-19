@@ -1,9 +1,6 @@
-import { faListSquares } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-// import ShowChartRoundedIcon from '@mui/icons-material/ShowChartRounded';
-// import HomeSharpIcon from '@mui/icons-material/HomeSharp';
-// import NewspaperSharpIcon from '@mui/icons-material/NewspaperSharp';
+
 import './NavBar.sass'
 
 function Navbar() {

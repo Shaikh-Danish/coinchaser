@@ -15,9 +15,6 @@
         display: flex
         list-style: none
         gap: 0 1em
-        visibility: hidden
-        cursor: none
-        opacity: 0
         transition: opacity .2s ease-in
 
     &__links[aria-expanded=true]
@@ -31,9 +28,8 @@
         outline: none
         cursor: pointer
         color: c.$clr-white
+        display: none
 
-        // & a:hover
-        //     color: c.$clr-black
 
 a 
     text-decoration: none
@@ -47,9 +43,15 @@ a
         flex-direction: column
         top: 100%
         right: 0
+        visibility: hidden
+        cursor: none
+        opacity: 0
 
         li 
             padding: 1em 1.5em
 
         li:hover
             background-color: c.$clr-bg
+    
+    .nav__ham-menu
+        display: block

@@ -1,0 +1,19 @@
+@use '../partials/color' as c
+
+    
+.global__container
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr))
+    gap: 1em
+    margin: 1em 0
+
+    .global__card 
+        background-color: c.$clr-white
+        padding: 1.4em 1em
+        border-radius: .3em
+
+        p 
+            margin: .4em 0
+            font-weight: bold
+            color: c.$clr-primary
+            font-size: 1.1rem

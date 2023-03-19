@@ -1,43 +1,48 @@
-import {  useEffect } from 'react'
 import { millify } from 'millify'
 import { Link } from 'react-router-dom'
 
 import { useGetCryptosQuery } from '../../services/cryptoApi'
+import CryptoCurrencies from '../CryptoCurrencies/CryptoCurrencies'
 import './Home.sass'
 
 function Home() {
 
   let { data: globalStats, isSuccess } = useGetCryptosQuery()
+  console.log(globalStats)
   
-  if (isSuccess) globalStats = globalStats?.data?.stats
+  if (isSuccess) {globalStats = globalStats?.data?.stats}
 
-  
   return (
     <>
-      <h1>Global CryptoCurrencies</h1>
-      <div className="home-container">
-        <div className="home-row">
-          <h2>Total CryptoCurrencies</h2>
-          <p>{globalStats?.total}</p>
+      <section className="global">
+        <h2>Global CryptoCurrencies Stats</h2>
+        <div className="global__container">
+          <CryptoGlobalStat statsTitle="Total Markets" data={globalStats?.totalMarkets} />
+          <CryptoGlobalStat statsTitle="Total Currencies" data={globalStats?.total} />
+          <CryptoGlobalStat statsTitle="Total Exchanges" data={globalStats?.totalExchanges} />
+          <CryptoGlobalStat statsTitle="Total Market Cap" data={globalStats?.totalMarketCap} />
+          <CryptoGlobalStat statsTitle="Total 24h Volume" data={globalStats?.total24hVolume} />
         </div>
-        <div className="home-row">
-          <h2>Total Exchanges</h2>
-          <p>{millify(globalStats?.totalExchanges)}</p>
+      </section>
+      <section>
+        <div>
+          <h2>Popular CryptoCurrencies</h2>
+          <Link to="/cryptocurrencies">show more</Link>
         </div>
-        <div className="home-row">
-          <h2>Total Market Cap</h2>
-          <p>{millify(globalStats?.totalMarketCap)}</p>
-        </div>
-        <div className="home-row">
-          <h2>Total 24h Volume</h2>
-          <p>{millify(globalStats?.total24hVolume)}</p>
-        </div>
-        <div className="home-row">
-          <h2>Total Markets</h2>
-          <p>{millify(globalStats?.totalMarkets)}</p>
-        </div>
-      </div>
+
+        <CryptoCurrencies simplified />
+      </section>
     </>
+  )
+}
+
+
+function CryptoGlobalStat(props) {
+  return (
+    <div className="global__card">
+      <h3>{props.statsTitle}</h3>
+      <p>{millify(props.data)}</p>
+    </div>
   )
 }
 
