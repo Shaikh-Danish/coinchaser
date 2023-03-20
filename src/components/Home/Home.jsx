@@ -7,10 +7,9 @@ import './Home.sass'
 
 function Home() {
 
-  let { data: globalStats, isSuccess } = useGetCryptosQuery()
-  console.log(globalStats)
+  let { data: globalStats, isSuccess } = useGetCryptosQuery(10)
   
-  if (isSuccess) {globalStats = globalStats?.data?.stats}
+  if (isSuccess) globalStats = globalStats?.data?.stats
 
   return (
     <>
@@ -25,7 +24,7 @@ function Home() {
         </div>
       </section>
       <section>
-        <div>
+        <div className="popular__header">
           <h2>Popular CryptoCurrencies</h2>
           <Link to="/cryptocurrencies">show more</Link>
         </div>

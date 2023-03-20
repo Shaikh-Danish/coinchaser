@@ -1,0 +1,39 @@
+@use '../partials/color' as c
+@use '../partials/typography' as t
+
+.crypto
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))
+    margin: 1em 0
+    gap: 1em
+
+    &__card
+        background-color: c.$clr-white
+        padding: 1em
+        border-radius: .3em
+
+    &__icon 
+        width: 45px
+
+    &__header
+        display: flex
+        gap: 1em
+
+    &__symbol,
+    &__lable 
+        font-size: t.$font-smaller
+        margin-top: .3em
+        color: c.$clr-slateGray
+
+    &__stats
+        display: flex
+        justify-content: center
+        margin-top: 1em
+        text-align: center
+
+    &__stat 
+        padding: 0 1em 
+
+    &__stat:not(:last-child)
+        border-right: 1px solid c.$clr-slateGray
+        
