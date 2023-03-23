@@ -19,7 +19,27 @@
             font-size: 1.1rem
         
 
-.popular__header
+.section__header
     display: flex
     align-items: center
     justify-content: space-between
+
+
+.cryptos
+    display: flex
+    gap: .7em
+    margin: 1em 0
+
+    &__line-chart
+        width: 70%
+        height: 200px
+        background-color: c.$clr-white
+    
+    &__crypto
+        width: 30%
+        height: 200px
+        overflow: scroll
+
+.crypto__card:not(:last-child)
+    margin-bottom: .7em 
+

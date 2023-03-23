@@ -3,7 +3,7 @@
 
 .crypto
     display: grid
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr))
     margin: 1em 0
     gap: 1em
 
@@ -11,6 +11,10 @@
         background-color: c.$clr-white
         padding: 1em
         border-radius: .3em
+        cursor: pointer
+
+    &__card:hover
+        background-color: c.$clr-bg
 
     &__icon 
         width: 45px

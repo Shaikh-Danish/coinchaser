@@ -18,11 +18,7 @@ function CryptoCurrencies({ simplified }) {
 
   return (
     <div className="crypto">
-      {coins?.map(coin => {
-        console.log(coin.name)
-        return <CryptoCard key={coin.uuid} data={coin} />
-      }
-      )}
+
     </div>
     
   )

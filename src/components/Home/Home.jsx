@@ -1,15 +1,27 @@
 import { millify } from 'millify'
 import { Link } from 'react-router-dom'
+import { useState, useRef } from 'react'
 
 import { useGetCryptosQuery } from '../../services/cryptoApi'
-import CryptoCurrencies from '../CryptoCurrencies/CryptoCurrencies'
+import CryptoCard from '../CryptoCurrencies/CryptoCard'
+import News from '../News/News'
+import LineChart from '../lineChart/LineChart'
 import './Home.sass'
 
 function Home() {
 
-  let { data: globalStats, isSuccess } = useGetCryptosQuery(10)
+  const { data, isSuccess } = useGetCryptosQuery(10)
+  // const [loading, setLoading] = useState(false)
+  const coinIdRef = useRef("")
+   
+  let globalStats
+  let coins
   
-  if (isSuccess) globalStats = globalStats?.data?.stats
+  if (isSuccess) {
+    globalStats = data?.data?.stats
+    coins = data?.data?.coins
+    coinIdRef.current = coins[0].uuid
+  }
 
   return (
     <>
@@ -24,12 +36,32 @@ function Home() {
         </div>
       </section>
       <section>
-        <div className="popular__header">
+        <div className="section__header">
           <h2>Popular CryptoCurrencies</h2>
           <Link to="/cryptocurrencies">show more</Link>
         </div>
 
-        <CryptoCurrencies simplified />
+        <div className="cryptos">
+          <div className="cryptos__line-chart">
+            <LineChart coinId={coinIdRef} />
+          </div>
+          
+          <div className="cryptos__crypto">
+          {coins?.map(coin => 
+            <CryptoCard key={coin.uuid} data={coin} simplified />
+          )}
+          </div>
+        </div>
+
+        
+      </section>
+      <section>
+        <div className="section__header">
+          <h2>Trending News</h2>
+          <Link to="/news">show more</Link>
+        </div>
+
+        <News simplified />
       </section>
     </>
   )
