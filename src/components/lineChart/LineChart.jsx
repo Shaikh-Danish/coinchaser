@@ -46,6 +46,8 @@ const options = {
 function LineChart(props) {
     const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
+    console.log(props.coinId)
+
     const data = {
         labels,
         datasets: [

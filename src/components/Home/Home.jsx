@@ -47,20 +47,17 @@ function Home() {
           </div>
           
           <div className="cryptos__crypto">
-          {coins?.map(coin => 
-            <CryptoCard key={coin.uuid} data={coin} simplified />
-          )}
+            {coins?.map(coin => 
+              <CryptoCard key={coin.uuid} data={coin} simplified />
+            )}
           </div>
         </div>
-
-        
       </section>
       <section>
         <div className="section__header">
           <h2>Trending News</h2>
           <Link to="/news">show more</Link>
         </div>
-
         <News simplified />
       </section>
     </>
