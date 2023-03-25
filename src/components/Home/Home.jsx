@@ -1,6 +1,6 @@
 import { millify } from 'millify'
 import { Link } from 'react-router-dom'
-import { useState, useRef } from 'react'
+import { useState, useEffect } from 'react'
 
 import { useGetCryptosQuery } from '../../services/cryptoApi'
 import CryptoCard from '../CryptoCurrencies/CryptoCard'
@@ -11,18 +11,20 @@ import './Home.sass'
 function Home() {
 
   const { data, isSuccess } = useGetCryptosQuery(10)
-  // const [loading, setLoading] = useState(false)
-  const coinIdRef = useRef("")
-   
+  const [crypto, setCrypto] = useState({})
+
   let globalStats
   let coins
-  
+
   if (isSuccess) {
     globalStats = data?.data?.stats
     coins = data?.data?.coins
-    coinIdRef.current = coins[0].uuid
   }
 
+  useEffect(() => {
+    setCrypto(coins?.[0])
+  }, [isSuccess])
+  
   return (
     <>
       <section className="global">
@@ -42,17 +44,16 @@ function Home() {
         </div>
 
         <div className="cryptos">
-          <div className="cryptos__line-chart">
-            <LineChart coinId={coinIdRef} />
-          </div>
+          <section className="cryptos__line-chart">
+            <LineChart crypto={crypto} />
+          </section>
           
-          <div className="cryptos__crypto">
-          {coins?.map(coin => 
-            <CryptoCard key={coin.uuid} data={coin} simplified />
-          )}
-          </div>
+          <section className="cryptos__crypto">
+            {coins?.map(coin => 
+              <CryptoCard key={coin.uuid} data={coin} onClick={() => setCrypto(coin)} simplified />
+            )}
+          </section>
         </div>
-
         
       </section>
       <section>
@@ -61,7 +62,7 @@ function Home() {
           <Link to="/news">show more</Link>
         </div>
 
-        <News simplified />
+        {/* <News simplified /> */}
       </section>
     </>
   )
@@ -72,7 +73,7 @@ function CryptoGlobalStat(props) {
   return (
     <div className="global__card">
       <h3>{props.statsTitle}</h3>
-      <p>{millify(props.data)}</p>
+      <p>{millify(Number(props.data))}</p>
     </div>
   )
 }

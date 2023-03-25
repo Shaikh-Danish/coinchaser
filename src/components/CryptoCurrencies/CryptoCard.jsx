@@ -1,10 +1,10 @@
 import React from 'react'
 import { millify } from 'millify'
 
-function CryptoCard( { data: {change, iconUrl, name, marketCap, price, rank, symbol}, simplified }) {
+function CryptoCard( { data: {change, iconUrl, name, marketCap, price, rank, symbol}, simplified, onClick }) {
   
   return (
-    <div className="crypto__card">
+    <div className="crypto__card" onClick={onClick}>
       <div className="crypto__header">
         <img src={iconUrl} alt={name} className="crypto__icon" />
         <div>

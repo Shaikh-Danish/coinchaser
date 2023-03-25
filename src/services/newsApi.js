@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const baseUrl = "http://https://cryptonews-api.glitch.me"
+const baseUrl = "https://cryptonews-api.glitch.me"
 
 const createRequest = (url) => ({ url }) 
 

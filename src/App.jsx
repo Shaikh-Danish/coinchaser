@@ -9,8 +9,6 @@ import News from './components/News/News'
 import './App.sass'
 
 function App() {
-  let data = fetch("http://localhost:3000/message").then(response => response.json()).then(data =>  console.log(data))
-
   return (
     <div className="App">
       <header>
