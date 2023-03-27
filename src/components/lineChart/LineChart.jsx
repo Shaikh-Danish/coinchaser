@@ -25,7 +25,7 @@ ChartJS.register(
 );
   
 const options = {
-    // responsive: true,
+    responsive: true,
     maintainAspectRatio: false,
 
     plugins: {
@@ -46,8 +46,7 @@ const options = {
 };
 
 function LineChart({ crypto }) {
-    
-    const { data: d, isSuccess} = useGetCoinHistoryQuery(crypto?.uuid)
+    const { data: d, isSuccess } = useGetCoinHistoryQuery(crypto?.uuid)
     let coinHistory
 
     if (isSuccess) {
@@ -69,7 +68,7 @@ function LineChart({ crypto }) {
     };
 
   return (
-    <Line className="line-chart" options={options} data={data}  />
+     <Line className="line-chart" options={options} data={data} />
   )
 }
 

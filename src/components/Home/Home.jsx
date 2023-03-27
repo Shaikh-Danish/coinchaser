@@ -45,12 +45,22 @@ function Home() {
 
         <div className="cryptos">
           <section className="cryptos__line-chart">
+            <div className="cryptos__header">
+              <div className="flex align-center gap-05">
+                <img src={crypto?.iconUrl} alt={crypto?.name} className="crypto__icon" />
+                <div>
+                  <p className="cryptos__name">{crypto?.name}</p>
+                  <p className="cryptos__symbol">{crypto?.symbol}</p>
+                </div>
+              </div>
+              <p className="cryptos__price">${Number(crypto?.price).toFixed(4)}</p>
+            </div>
             <LineChart crypto={crypto} />
           </section>
           
           <div className="cryptos__crypto">
           {coins?.map(coin => 
-            <CryptoCard key={coin.uuid} data={coin} simplified />
+            <CryptoCard key={coin.uuid} data={coin} onClick={() => setCrypto(coin)} simplified />
           )}
           </div>
         </div>
