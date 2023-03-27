@@ -1,10 +1,10 @@
-import { useGetCryptoNewsQuery } from "../../services/newsApi"
+import { useGetCryptoNewsQuery } from '../../services/newsApi'
 
 function News() {
   const { data, isSuccess } = useGetCryptoNewsQuery()
 
   if (isSuccess) {
-    console.log(data)
+    // console.log(data)
   }
 
   return (

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 
 import './NavBar.sass'
 
@@ -11,7 +11,7 @@ function Navbar() {
     <>
         <nav className='nav'>
             <div className='nav__logo'>
-                <NavLink to="/">CoinChaser</NavLink>
+                <Link to="/">CoinChaser</Link>
             </div>
             <button className="nav__ham-menu " onClick={() => {
                 setIsOpen(prev => !prev)

@@ -48,12 +48,13 @@ function Home() {
             <LineChart crypto={crypto} />
           </section>
           
-          <section className="cryptos__crypto">
-            {coins?.map(coin => 
-              <CryptoCard key={coin.uuid} data={coin} onClick={() => setCrypto(coin)} simplified />
-            )}
-          </section>
+          <div className="cryptos__crypto">
+          {coins?.map(coin => 
+            <CryptoCard key={coin.uuid} data={coin} simplified />
+          )}
+          </div>
         </div>
+
         
       </section>
       <section>
@@ -62,7 +63,7 @@ function Home() {
           <Link to="/news">show more</Link>
         </div>
 
-        {/* <News simplified /> */}
+        <News simplified />
       </section>
     </>
   )

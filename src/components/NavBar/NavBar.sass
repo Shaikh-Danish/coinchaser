@@ -1,7 +1,6 @@
 @use '../partials/color' as c
     
 .nav
-    background-color: c.$clr-primary
     display: flex
     justify-content: space-between
     padding : 1em 1.5em
@@ -33,7 +32,7 @@
 
 a 
     text-decoration: none
-    color: c.$clr-white
+    color: c.$clr-black
 
 
 @media screen and (max-width: 768px) 
@@ -55,3 +54,7 @@ a
     
     .nav__ham-menu
         display: block
+
+.active 
+    color: c.$clr-primary
+    font-weight: 700

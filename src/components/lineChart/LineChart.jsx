@@ -9,7 +9,7 @@ import {
     Tooltip,
     Legend,
   } from 'chart.js';
-import { useGetCryptosQuery } from '../../services/cryptoApi'
+import { useGetCoinHistoryQuery } from '../../services/cryptoApi'
 
 
 import './LineChart.sass'
@@ -25,8 +25,9 @@ ChartJS.register(
 );
   
 const options = {
-    responsive: true,
+    // responsive: true,
     maintainAspectRatio: false,
+
     plugins: {
         legend: {
             display: false
@@ -35,6 +36,7 @@ const options = {
             display: false,
         },
     },
+
     scales: {
         x: {
             display: false,
@@ -43,18 +45,26 @@ const options = {
 
 };
 
-function LineChart(props) {
-    const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-    console.log(props.crypto)
+function LineChart({ crypto }) {
+    
+    const { data: d, isSuccess} = useGetCoinHistoryQuery(crypto?.uuid)
+    let coinHistory
+
+    if (isSuccess) {
+        coinHistory = d?.data?.history
+    }
+
+    const labels = coinHistory?.map(history => history.timestamp)
+
     const data = {
         labels,
         datasets: [
-        {
-            label: 'Dataset 1',
-            data: [100, 19, 122, 109, 291, 48],
-            borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        },
+            {
+                label: 'Dataset 1',
+                data: coinHistory?.map(history => history.price),
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            },
         ],
     };
 
