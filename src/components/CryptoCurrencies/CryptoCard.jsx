@@ -1,38 +1,27 @@
-import React from 'react'
-import { millify } from 'millify'
+import './CryptoCurrencies.sass'
+import LineChart from '../lineChart/LineChart'
 
-function CryptoCard( { data: {change, iconUrl, name, marketCap, price, rank, symbol}, simplified, onClick }) {
-  
+function CryptoCard({ data, simplified, onClick }) {
+    console.log(data.change > 0)
   return (
-    <div className="crypto__card" onClick={onClick}>
-      <div className="crypto__header">
-        <img src={iconUrl} alt={name} className="crypto__icon" />
-        <div>
-          <p className="crypto__name">{name}</p>
-          <p className="crypto__symbol">{symbol}</p>
+    <div className="crypto__card">
+        <div className="crypto__header">
+                <img src={data.iconUrl} alt={data.name} className="crypto__icon" />
+            <div>
+                <p className="crypto__name">{data.name}</p>
+                <p className="crypto__symbol">{data.symbol}</p>
+            </div>
         </div>
-      </div>
-      <div className="crypto__stats">
-        <CardData label="Price" value={Number(price).toFixed(2)} />
-        <div className="crypto__stat">
-          <p className="crypto__value">{change}</p>
-          <p className="crypto__lable">Change</p>
+        <div className="crypto__body flex justify-center align-center gap-05">
+            <div>
+                <p className={`crypto__change font-bold ${data.change > 0 ? "clr-seaGreen" : "clr-crimsonRed"}`}>{data.change}%</p>
+                <p className="crypto__price font-bold">${Number(data.price).toFixed()}</p>
+            </div>
+            <div className="crypto__line-chart">
+                <LineChart crypto={data} />
+            </div>
         </div>
-        {!simplified && <CardData label="Market Cap" value={millify(marketCap)} />}
-        
-      </div>
     </div>
-  )
-}
-
-
-function CardData(props) {
-  return (
-    <div className="crypto__stat">
-      <p className="crypto__value">{props.value}</p>
-      <p className="crypto__lable">{props.label}</p>
-    </div>
-  
   )
 }
 

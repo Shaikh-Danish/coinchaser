@@ -1,3 +1,5 @@
+@use  './color' as c
+    
 .flex 
     display: flex
 
@@ -9,3 +11,25 @@
 
 .justify-between
     justify-content: space-between
+
+.justify-center
+    justify-content: center
+
+
+// colors
+
+.clr-primary
+    color: c.$clr-primary
+
+.clr-seaGreen
+    color: c.$clr-seaGreen
+    background-color: c.$clr-seaGreenLight
+
+.clr-crimsonRed
+    color: c.$clr-crimsonRed
+    background-color: c.$clr-crimsonRedLight
+
+// font
+
+.font-bold
+    font-weight: 700

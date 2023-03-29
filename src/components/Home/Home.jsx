@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 import { useGetCryptosQuery } from '../../services/cryptoApi'
-import CryptoCard from '../CryptoCurrencies/CryptoCard'
+import CryptoCard from './CryptoCard'
 import News from '../News/News'
 import LineChart from '../lineChart/LineChart'
 import './Home.sass'
@@ -59,9 +59,9 @@ function Home() {
           </section>
           
           <div className="cryptos__crypto">
-          {coins?.map(coin => 
-            <CryptoCard key={coin.uuid} data={coin} onClick={() => setCrypto(coin)} simplified />
-          )}
+            {coins?.map(coin => 
+              <CryptoCard key={coin.uuid} data={coin} onClick={() => setCrypto(coin)} simplified />
+            )}
           </div>
         </div>
 

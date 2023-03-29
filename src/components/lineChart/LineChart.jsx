@@ -25,8 +25,8 @@ ChartJS.register(
 );
   
 const options = {
-    responsive: true,
-    maintainAspectRatio: false,
+    // responsive: true,
+    // maintainAspectRatio: false,
 
     plugins: {
         legend: {
@@ -41,6 +41,9 @@ const options = {
         x: {
             display: false,
         },
+        y: {
+            display: false,
+        },
     },
 
 };
@@ -50,16 +53,16 @@ function LineChart({ crypto }) {
     let coinHistory
 
     if (isSuccess) {
-        coinHistory = d?.data?.history
+        coinHistory = d?.data?.history.slice(0, 50).reverse()
     }
 
-    const labels = coinHistory?.map(history => history.timestamp)
+    const labels = coinHistory?.map(history => getFormattedTime(history.timestamp))
 
     const data = {
         labels,
         datasets: [
             {
-                label: 'Dataset 1',
+                label: `${crypto?.name} price `,
                 data: coinHistory?.map(history => history.price),
                 borderColor: 'rgb(255, 99, 132)',
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
@@ -70,6 +73,17 @@ function LineChart({ crypto }) {
   return (
      <Line className="line-chart" options={options} data={data} />
   )
+}
+
+
+function getFormattedTime(timeInMs) {
+    const date = new Date(timeInMs * 1000); // Convert seconds to milliseconds
+
+    const hours = date.getHours() % 12; // Get the 12-hour format hour
+    const minutes = date.getMinutes().toString().padStart(2, '0'); // Pad minutes with leading zero if needed
+    const meridiem = date.getHours() >= 12 ? 'PM' : 'AM'; // Determine whether it's AM or PM
+
+    return `${hours}:${minutes} ${meridiem}`;
 }
 
 export default LineChart

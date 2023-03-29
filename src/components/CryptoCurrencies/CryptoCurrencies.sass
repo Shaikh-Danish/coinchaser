@@ -3,21 +3,27 @@
 
 .crypto
     display: grid
-    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr))
-    margin: 1em 0
-    gap: 1em
-
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr))
+    gap: .6em 0
+    
     &__card
         background-color: c.$clr-white
         padding: 1em
         border-radius: .3em
         cursor: pointer
+        height: 230px
 
-    &__card:hover
-        background-color: c.$clr-bg
+        &:hover
+            background-color: c.$clr-bg
+    &__name
+        font-size: 1.2rem
+        font-weight: 700
 
     &__icon 
-        width: 45px
+        width: 55px
+        padding: .6em
+        border-radius: .2em
+        background-color: c.$clr-bg
 
     &__header
         display: flex
@@ -25,7 +31,7 @@
 
     &__symbol,
     &__lable 
-        font-size: t.$font-smaller
+        font-size: .9rem
         margin-top: .3em
         color: c.$clr-slateGray
 
@@ -40,4 +46,20 @@
 
     &__stat:not(:last-child)
         border-right: 1px solid c.$clr-slateGray
+
+    &__body
+        margin-top: 1em
+
+    &__line-chart
+        width: 60%
+
+    &__change 
+        padding: .4em 1.6em
+        border-radius: 20px
+
+    &__price
+        text-align: center
+        margin-top: .5em
+        font-size: 1.2rem
+
         
