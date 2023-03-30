@@ -5,8 +5,9 @@ import './CryptoCurrencies.sass'
 import { useState, useEffect } from 'react'
 
 function CryptoCurrencies({ simplified }) {
-  let limit = 2
-  let { data: currencies, isSuccess, isLoading } = useGetCryptosQuery(limit)
+  let limit = 10
+  let offset = 0
+  let { data: currencies, isSuccess, isLoading } = useGetCryptosQuery({ limit, offset })
   const [coins, setCoins] = useState(currencies?.data?.coins)
   
   

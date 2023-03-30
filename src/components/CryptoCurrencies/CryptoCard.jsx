@@ -3,7 +3,6 @@ import LineChart from '../lineChart/LineChart'
 import CardHeader from '../common/CardHeader'
 
 function CryptoCard({ data, simplified, onClick }) {
-    console.log(data.change > 0)
   return (
     <div className="crypto__card">
         <CardHeader iconUrl={data.iconUrl} name={data.name} symbol={data.symbol} />
@@ -13,7 +12,7 @@ function CryptoCard({ data, simplified, onClick }) {
                 <p className="crypto__price font-bold">${Number(data.price).toFixed()}</p>
             </div>
             <div className="crypto__line-chart">
-                <LineChart crypto={data} />
+                {/* <LineChart crypto={data} /> */}
             </div>
         </div>
     </div>

@@ -11,7 +11,7 @@ import './Home.sass'
 
 function Home() {
 
-  const { data, isSuccess } = useGetCryptosQuery(10)
+  const { data, isSuccess } = useGetCryptosQuery({ limit: 10, offset: 0})
   const [crypto, setCrypto] = useState({})
 
   let globalStats

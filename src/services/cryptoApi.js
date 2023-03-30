@@ -1,4 +1,3 @@
-// import axios from "axios";
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const cryptoApiHeaders = {
@@ -15,7 +14,7 @@ export const cryptoApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     getCryptos: builder.query({
-      query: (limit) => createRequest(`/coins?limit=${limit}`)
+      query: ({ limit, offset }) => createRequest(`/coins?limit=${limit}&offset=${offset}`)
     }),
     getCoinHistory: builder.query({
       query: (id) => createRequest(`/coin/${id}/history`)
@@ -25,5 +24,5 @@ export const cryptoApi = createApi({
 
 export const {
   useGetCryptosQuery,
-  useGetCoinHistoryQuery,
+  useGetCoinHistoryQuery,ct
 } = cryptoApi
