@@ -6,6 +6,7 @@ import { useGetCryptosQuery } from '../../services/cryptoApi'
 import CryptoCard from './CryptoCard'
 import News from '../News/News'
 import LineChart from '../lineChart/LineChart'
+import CardHeader from '../common/CardHeader'
 import './Home.sass'
 
 function Home() {
@@ -46,13 +47,15 @@ function Home() {
         <div className="cryptos">
           <section className="cryptos__line-chart">
             <div className="cryptos__header">
-              <div className="flex align-center gap-05">
+              {/* <div className="flex align-center gap-05">
                 <img src={crypto?.iconUrl} alt={crypto?.name} className="crypto__icon" />
                 <div>
                   <p className="cryptos__name">{crypto?.name}</p>
                   <p className="cryptos__symbol">{crypto?.symbol}</p>
                 </div>
-              </div>
+              </div> */}
+              <CardHeader iconUrl={crypto?.iconUrl} name={crypto?.name} symbol={crypto?.symbol} />
+
               <p className="cryptos__price">${Number(crypto?.price).toFixed(4)}</p>
             </div>
             <LineChart crypto={crypto} />
