@@ -45,15 +45,28 @@ const options = {
             display: false,
         },
     },
+    elements: {
+        line: {
+          tension: 0.4 // controls the curvature of the line
+        },
+        point:{
+            radius: 2.5
+        }
+    },
 
 };
 
 function LineChart({ crypto }) {
-    const { data: d, isSuccess } = useGetCoinHistoryQuery(crypto?.uuid)
-    let coinHistory
-
+    const { data: history, isSuccess } = useGetCoinHistoryQuery(crypto?.uuid)
+    let coinHistory;
+    
     if (isSuccess) {
-        coinHistory = d?.data?.history.slice(0, 50).reverse()
+        // const isHistoryValid = history && history.data && history.data.history;
+        // const historyLength = isHistoryValid ? history.data.history.length : 0;
+        // const coinHistory = isHistoryValid ? history.data.history.slice(historyLength - 50) : [];
+
+        let len = history?.data?.history.length
+        coinHistory = history?.data?.history.slice(0, 50).reverse()
     }
 
     const labels = coinHistory?.map(history => getFormattedTime(history.timestamp))
@@ -66,6 +79,7 @@ function LineChart({ crypto }) {
                 data: coinHistory?.map(history => history.price),
                 borderColor: 'rgb(255, 99, 132)',
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                cubicInterpolationMode: "monotone"
             },
         ],
     };

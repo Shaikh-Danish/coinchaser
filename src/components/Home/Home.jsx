@@ -7,6 +7,7 @@ import CryptoCard from './CryptoCard'
 import News from '../News/News'
 import LineChart from '../lineChart/LineChart'
 import CardHeader from '../common/CardHeader'
+import PriceChange from '../common/PriceChange'
 import './Home.sass'
 
 function Home() {
@@ -21,7 +22,7 @@ function Home() {
     globalStats = data?.data?.stats
     coins = data?.data?.coins
   }
-
+  console.log(globalStats?.total)
   useEffect(() => {
     setCrypto(coins?.[0])
   }, [isSuccess])
@@ -47,16 +48,11 @@ function Home() {
         <div className="cryptos">
           <section className="cryptos__line-chart">
             <div className="cryptos__header">
-              {/* <div className="flex align-center gap-05">
-                <img src={crypto?.iconUrl} alt={crypto?.name} className="crypto__icon" />
-                <div>
-                  <p className="cryptos__name">{crypto?.name}</p>
-                  <p className="cryptos__symbol">{crypto?.symbol}</p>
-                </div>
-              </div> */}
               <CardHeader iconUrl={crypto?.iconUrl} name={crypto?.name} symbol={crypto?.symbol} />
-
-              <p className="cryptos__price">${Number(crypto?.price).toFixed(4)}</p>
+              <div className="flex flex-column align-center ">
+                <p className="cryptos__price">${Number(crypto?.price).toFixed(4)}</p>
+                <PriceChange change={crypto?.change} />
+              </div>
             </div>
             <LineChart crypto={crypto} />
           </section>

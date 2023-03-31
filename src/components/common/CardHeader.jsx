@@ -3,7 +3,7 @@ import './common.sass'
 function CardHeader( { iconUrl, name, symbol }) {
   return (
     <div className="card__header">
-        <img src={iconUrl} alt={name} className="card__icon" />
+        <img src={iconUrl} alt={name} className="card__icon align-self-start" />
         <div>
             <p className="card__name">{name}</p>
             <p className="card__symbol">{symbol}</p>

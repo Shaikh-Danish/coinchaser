@@ -19,7 +19,7 @@
             color: c.$clr-primary
             font-size: 1.1rem
         
-
+        
 .section__header
     display: flex
     align-items: center
@@ -45,21 +45,13 @@
     &__header
         display: flex
         justify-content: space-between
-
-    &__icon
-        width: 50px
-
-    &__name
-        font-weight: 700
-
-    &__symbol
-        font-size: .9rem
-        color: c.$clr-slateGray
+        align-items: center
 
     &__price
         font-size: 1.3rem
         font-weight: bold
-        color: c.$clr-primary
+        // color: c.$clr-primary
+        margin-bottom: .3em
         
 
 .crypto__coin
@@ -71,10 +63,5 @@
     &:hover
         background-color: c.$clr-bg
 
-    
-.crypto__coin:not(:last-child)
+    &:not(:last-child)
     margin-bottom: .7em
-
- 
-.card__name
-    // font-size: 1rem
