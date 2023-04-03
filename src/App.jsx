@@ -15,7 +15,7 @@ function App() {
         <NavBar />
       </header>
       <main>
-        <div>
+        <div style={{ position: "relative" }}>
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/cryptocurrencies" element={<CryptoCurrencies />} />

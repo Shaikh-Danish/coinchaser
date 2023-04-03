@@ -2,7 +2,7 @@ import { millify } from 'millify'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
-import { useGetCryptosQuery } from '../../services/cryptoApi'
+import { useLazyGetCryptosQuery } from '../../services/cryptoApi'
 import CryptoCard from './CryptoCard'
 import News from '../News/News'
 import LineChart from '../lineChart/LineChart'
@@ -12,31 +12,51 @@ import './Home.sass'
 
 function Home() {
 
-  const { data, isSuccess } = useGetCryptosQuery({ limit: 10, offset: 0})
+  // const { data, isSuccess } = useGetCryptosQuery({ limit: 10, offset: 0})
+  const [getCryptos, results] = useLazyGetCryptosQuery()
   const [crypto, setCrypto] = useState({})
+  const [cryptosData, setCryptosData] = useState({
+    globalStats: null,
+    coins: null,
+  })
 
   let globalStats
   let coins
 
-  if (isSuccess) {
-    globalStats = data?.data?.stats
-    coins = data?.data?.coins
-  }
-  console.log(globalStats?.total)
+  // if (isSuccess) {
+  //   globalStats = data?.data?.stats
+  //   coins = data?.data?.coins
+  // }
+
   useEffect(() => {
-    setCrypto(coins?.[0])
-  }, [isSuccess])
+    if (results && results.data && results.data.data) {
+      const data = results.data.data
+      setCryptosData({
+        globalStats: data.stats,
+        coins: data.coins
+      })
+    }
+  }, [results])
+
+  useEffect(() => {
+    getCryptos({ limit: 10, offset: 0})
+  }, [])
+  
+  // useEffect(() => {
+  //   console.log(coins)
+  //   setCrypto(coins?.[0])
+  // }, [isSuccess])
   
   return (
     <>
       <section className="global">
         <h2>Global CryptoCurrencies Stats</h2>
         <div className="global__container">
-          <CryptoGlobalStat statsTitle="Total Markets" data={globalStats?.totalMarkets} />
-          <CryptoGlobalStat statsTitle="Total Currencies" data={globalStats?.total} />
-          <CryptoGlobalStat statsTitle="Total Exchanges" data={globalStats?.totalExchanges} />
-          <CryptoGlobalStat statsTitle="Total Market Cap" data={globalStats?.totalMarketCap} />
-          <CryptoGlobalStat statsTitle="Total 24h Volume" data={globalStats?.total24hVolume} />
+          <CryptoGlobalStat statsTitle="Total Markets" data={cryptosData.globalStats?.totalMarkets} />
+          <CryptoGlobalStat statsTitle="Total Currencies" data={cryptosData.globalStats?.total} />
+          <CryptoGlobalStat statsTitle="Total Exchanges" data={cryptosData.globalStats?.totalExchanges} />
+          <CryptoGlobalStat statsTitle="Total Market Cap" data={cryptosData.globalStats?.totalMarketCap} />
+          <CryptoGlobalStat statsTitle="Total 24h Volume" data={cryptosData.globalStats?.total24hVolume} />
         </div>
       </section>
       <section>
@@ -54,11 +74,11 @@ function Home() {
                 <PriceChange change={crypto?.change} />
               </div>
             </div>
-            <LineChart crypto={crypto} />
+            {/* <LineChart crypto={crypto} /> */}
           </section>
           
           <div className="cryptos__crypto">
-            {coins?.map(coin => 
+            {cryptosData.coins?.map(coin => 
               <CryptoCard key={coin.uuid} data={coin} onClick={() => setCrypto(coin)} simplified />
             )}
           </div>
